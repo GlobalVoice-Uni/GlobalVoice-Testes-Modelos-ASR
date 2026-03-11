@@ -2,8 +2,8 @@ numpy>=1.21.0
 sounddevice>=0.4.5
 faster-whisper>=0.8.0
 openai-whisper>=20231117
-insanely-fast-whisper from git
-whisperx from git
+git+https://github.com/Vaibhavs10/insanely-fast-whisper.git
+git+https://github.com/m-bain/whisperX.git
 torch>=2.0.0
 torchaudio>=2.0.0
 librosa>=0.10.0
