@@ -1,0 +1,16 @@
+# Python ignores
+
+# Virtual environments
+venv/
+
+# Bytecode files
+__pycache__/
+*.py[cod]
+
+# Results
+results/
+
+# IDE files
+.idea/
+*.sublime-workspace
+*.sublime-project
