@@ -23,7 +23,9 @@ The purpose of the GlobalVoice Testes project is to provide a framework for test
         se não tiver permissão, rode antes -> chmod +x setup_environment.sh
 
 - 3. Ative o ambiente virtual
-    .\venv\Scripts\activate
+    windows -> .\.venv\Scripts\activate
+    linux -> source .venv/Scripts/activate ou source .venv/bin/activate
+
 
 - 4. Teste um modelo específico (10 segundos do microfone)
     python whisper_benchmark.py faster-whisper

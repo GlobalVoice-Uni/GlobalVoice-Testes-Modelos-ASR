@@ -1,9 +1,9 @@
 @echo off
 :: Create a virtual environment
-python -m venv venv
+python -m venv .venv
 
 :: Activate the virtual environment
-call venv\Scripts\activate.bat
+call .venv\Scripts\activate.bat
 
 :: Install dependencies
 pip install -r requirements.txt

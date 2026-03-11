@@ -2,10 +2,12 @@
 
 # Virtual environments
 venv/
+.venv/
 
 # Bytecode files
 __pycache__/
 *.py[cod]
+*.pyc
 
 # Results
 results/
@@ -14,3 +16,4 @@ results/
 .idea/
 *.sublime-workspace
 *.sublime-project
+.env
