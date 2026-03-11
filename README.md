@@ -18,7 +18,9 @@ The purpose of the GlobalVoice Testes project is to provide a framework for test
     cd GlobalVoice-Testes
 
 - 2. Execute o setup (cria venv, instala dependências, cria pasta results)
-    setup_environment.bat
+    windows -> setup_environment.bat
+    linux -> ./setup_enviroment.bat
+        se não tiver permissão, rode antes -> chmod +x setup_environment.sh
 
 - 3. Ative o ambiente virtual
     .\venv\Scripts\activate
