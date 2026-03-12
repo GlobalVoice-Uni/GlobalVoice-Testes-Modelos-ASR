@@ -9,15 +9,15 @@ def view_result(filepath):
             data = json.load(f)
         
         print("\n" + "╔" + "═"*48 + "╗")
-        print(f"║ BENCHMARK RESULT - {data['model']:<28} ║")
+        print(f"║ BENCHMARK RESULT - {data['model']:<27} ║")
         print("╟" + "─"*48 + "╢")
-        print(f"║ Device:          {data['device']:<33} ║")
-        print(f"║ Audio Duration:  {data['audio_duration_s']:<33} s ║")
-        print(f"║ Processing Time: {data['processing_time_s']:<33} s ║")
-        print(f"║ Real-Time Factor:{data['real_time_factor']:<33} x ║")
-        print(f"║ Language:        {data['language']:<33} ║")
+        print(f"║ Device:          {data['device']:<29} ║")
+        print(f"║ Audio Duration:  {data['audio_duration_s']:<27} s ║")
+        print(f"║ Processing Time: {data['processing_time_s']:<27} s ║")
+        print(f"║ Real-Time Factor:{data['real_time_factor']:<27} x ║")
+        print(f"║ Language:        {data['language']:<29} ║")
         print("╟" + "─"*48 + "╢")
-        print("║ TRANSCRIPTION:                                  ║")
+        print("║ TRANSCRIPTION:                                 ║")
         print("╟" + "─"*48 + "╢")
         
         # Print transcription with word wrapping

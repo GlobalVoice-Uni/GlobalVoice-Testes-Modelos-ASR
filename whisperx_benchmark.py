@@ -3,22 +3,24 @@ import time
 import json
 import logging
 import gc
+import warnings
 from typing import Dict
 import numpy as np
 import torch
 import sounddevice as sd
-from faster_whisper import WhisperModel
-import whisper as openai_whisper
+
+# Suppress torchcodec warnings
+warnings.filterwarnings('ignore', category=UserWarning)
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 
-class WhisperBenchmark:
-    """Simple Whisper Benchmark - Compare different models with microphone input"""
+class WhisperXBenchmark:
+    """WhisperX Benchmark - Optimized transcription model with speaker diarization"""
     
-    def __init__(self, model_name: str, use_gpu: bool = False):
-        self.model_name = model_name
+    def __init__(self, use_gpu: bool = False):
+        self.model_name = "whisperx"
         self.use_gpu = use_gpu and torch.cuda.is_available()
         self.device = "cuda" if self.use_gpu else "cpu"
         self.model = None
@@ -28,26 +30,15 @@ class WhisperBenchmark:
         self._load_model()
     
     def _load_model(self):
-        """Load the selected model"""
+        """Load WhisperX model"""
         logger.info(f"Loading {self.model_name} model...")
         
-        if self.model_name == 'faster-whisper':
-            self.model = WhisperModel(
-                "base",
-                device=self.device,
-                compute_type="float16" if self.use_gpu else "int8"
-            )
-        
-        elif self.model_name == 'openai-whisper':
-            self.model = openai_whisper.load_model("base", device=self.device)
-        
-        elif self.model_name == 'whisperx':
-            try:
-                import whisperx
-                self.model = whisperx.load_model("base", device=self.device)
-            except Exception as e:
-                logger.error(f"Error loading whisperx: {e}")
-                raise
+        try:
+            import whisperx
+            self.model = whisperx.load_model("base", device=self.device)
+        except Exception as e:
+            logger.error(f"Error loading whisperx: {e}")
+            raise
         
         logger.info("Model loaded successfully!")
     
@@ -68,25 +59,16 @@ class WhisperBenchmark:
         return audio.flatten()
     
     def transcribe_audio(self, audio: np.ndarray, sample_rate: int = 16000) -> Dict:
-        """Transcribe audio with the selected model"""
+        """Transcribe audio with WhisperX"""
         logger.info("Starting transcription...")
         
         start_time = time.time()
         transcription = ""
         language = "unknown"
         
-        if self.model_name == 'faster-whisper':
-            segments, info = self.model.transcribe(audio)
-            transcription = " ".join([segment.text for segment in segments])
-            language = info.language if hasattr(info, 'language') else "unknown"
-        
-        elif self.model_name == 'openai-whisper':
+        try:
             result = self.model.transcribe(audio)
-            transcription = result.get("text", "")
-            language = result.get("language", "unknown")
-        
-        elif self.model_name == 'whisperx':
-            result = self.model.transcribe(audio)
+            
             # WhisperX returns segments, not direct text
             if isinstance(result, dict) and "segments" in result:
                 transcription = " ".join([seg.get("text", "") for seg in result.get("segments", [])])
@@ -94,6 +76,10 @@ class WhisperBenchmark:
             else:
                 transcription = result.get("text", "")
                 language = result.get("language", "unknown")
+        
+        except Exception as e:
+            logger.error(f"Error during transcription: {e}")
+            raise
         
         processing_time = time.time() - start_time
         audio_duration = len(audio) / sample_rate
@@ -126,7 +112,7 @@ class WhisperBenchmark:
 ╟────────────────────────────────────────╢
 ║ Transcription:                         ║
 ║ {result['transcription'][:38]:<39} ║
-╚════════════════════════════���═══════════╝
+╚════════════════════════════════════════╝
         """)
     
     def cleanup(self):
@@ -150,40 +136,26 @@ class WhisperBenchmark:
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Whisper Benchmark - Compare transcription models with microphone input',
+        description='WhisperX Benchmark - Optimized transcription with speaker diarization',
         epilog="""
 Examples:
-  python whisper_benchmark_complete.py --list-models
-  python whisper_benchmark_complete.py --model faster-whisper --duration 10
-  python whisper_benchmark_complete.py --model openai-whisper --duration 10
-  python whisper_benchmark_complete.py --model whisperx --duration 10 --output results/result_wx.json
+  python whisperx_benchmark.py --duration 10
+  python whisperx_benchmark.py --duration 10 --use-gpu
+  python whisperx_benchmark.py --duration 10 --output results/whisperx_result.json
         """
     )
     
-    parser.add_argument('--list-models', action='store_true', help='Show available models and exit')
-    parser.add_argument('--model', type=str, choices=['faster-whisper', 'openai-whisper', 'whisperx'], help='Model to benchmark')
     parser.add_argument('--duration', type=float, default=10.0, help='Recording duration in seconds')
     parser.add_argument('--use-gpu', action='store_true', help='Use GPU if available')
     parser.add_argument('--output', type=str, default=None, help='Output file for results (JSON format)')
     
     args = parser.parse_args()
     
-    if args.list_models:
-        print("\n📋 Available Models:")
-        print("  • faster-whisper")
-        print("  • openai-whisper")
-        print("  • whisperx")
-        print()
-        return
-    
-    if not args.model:
-        parser.error("--model is required (use --list-models to see options)")
-    
     if args.duration <= 0:
         parser.error("Duration must be positive")
     
     try:
-        benchmark = WhisperBenchmark(model_name=args.model, use_gpu=args.use_gpu)
+        benchmark = WhisperXBenchmark(use_gpu=args.use_gpu)
         result = benchmark.run(duration=args.duration)
         
         if args.output and result:
