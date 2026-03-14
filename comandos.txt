@@ -3,17 +3,42 @@
 	python whisper_benchmark_complete.py --list-models
 	python whisper_benchmark_complete.py --model faster-whisper --duration 10
 	python whisper_benchmark_complete.py --model openai-whisper --duration 10
+	python whisper_benchmark_complete.py --model faster-whisper --duration 10 --chunk-size 1.0
+	python whisper_benchmark_complete.py --model faster-whisper --duration 10 --reference-text "frase esperada"
+	python whisper_benchmark_complete.py --model faster-whisper --duration 10 --reference-file textos/10sEN.txt --output results/fw.json
+	python whisper_benchmark_complete.py --model faster-whisper --model-size small --duration 10 --reference-file textos/10sEN.txt --output results/fw-small.json
+	python whisper_benchmark_complete.py --model faster-whisper --model-size medium --duration 10 --reference-file textos/10sEN.txt --output results/fw-medium.json
+										pra usar a gpu, adicione:	  --use-gpu
+										tamanhos disponíveis:		  tiny | base | small | medium | large | large-v2 | large-v3
 
 
-- whisperx_benchmark.py - Só para WhisperX (sem warnings!)
 	python whisperx_benchmark.py --duration 10 --output results/whisperx_result.json
 	python whisperx_benchmark.py --duration 10 --use-gpu
+	python whisperx_benchmark.py --duration 10 --chunk-size 1.0 --reference-text "frase esperada"
+	python whisperx_benchmark.py --duration 10 --reference-file textos/10sEN.txt --output results/whisperx_result.json
+	python whisperx_benchmark.py --model-size small --duration 10 --reference-file textos/10sEN.txt --output results/wx-small.json
+	python whisperx_benchmark.py --model-size medium --duration 10 --reference-file textos/10sEN.txt --output results/wx-medium.json
+										tamanhos disponíveis:		  tiny | base | small | medium | large | large-v2 | large-v3
 
 
 
 📊 O que o script vai medir:
 ⏱️ Tempo de processamento (quanto tempo leva)
-🎯 Real-Time Factor (quantas vezes mais rápido que o áudio)
-💾 Memória utilizada (em MB)
+🎯 Real-Time Factor padronizado = processing_time / audio_duration (menor é melhor)
+📦 Latência por chunk: p50, p95, p99 (em ms)
+✅ WER (quando passar --reference-text ou --reference-file)
+💾 RAM pico (MB)
+🧠 VRAM pico (MB, quando usar GPU)
 📦 Chunks processados
 🖥️ Dispositivo usado (CPU/GPU)
+
+
+
+& ".\.venv\Scripts\Activate.ps1"
+
+python -m pip uninstall -y torch torchaudio torchvision
+
+python -m pip install --index-url https://download.pytorch.org/whl/cu128 torch==2.8.0+cu128 torchaudio==2.8.0+cu128
+
+python -m pip check
+python -c "import torch, torchaudio; print(torch.__version__, torchaudio.__version__); print('cuda_available=', torch.cuda.is_available()); print('torch_cuda=', torch.version.cuda); print('device_count=', torch.cuda.device_count())"
