@@ -4,24 +4,24 @@
 	python whisper_benchmark_complete.py --model openai-whisper --duration 10
 	python whisper_benchmark_complete.py --model faster-whisper --duration 10 --chunk-size 1.0
 	python whisper_benchmark_complete.py --model faster-whisper --duration 10 --reference-text "frase esperada"
-	python whisper_benchmark_complete.py --model faster-whisper --reference-file textos/reference-file.txt --output results/fw.json
-	python whisper_benchmark_complete.py --model faster-whisper --model-size small --reference-file textos/10sEN.txt --output results/fw-small.json
-	python whisper_benchmark_complete.py --model faster-whisper --model-size medium --reference-file textos/10sEN.txt --output results/fw-medium.json
+	python whisper_benchmark_complete.py --model faster-whisper --reference-file textos/reference-file.txt --output resultados/fw.json
+	python whisper_benchmark_complete.py --model faster-whisper --model-size small --reference-file textos/10sEN.txt --output resultados/fw-small.json
+	python whisper_benchmark_complete.py --model faster-whisper --model-size medium --reference-file textos/10sEN.txt --output resultados/fw-medium.json
 							pra usar a gpu, adicione:	  --use-gpu
 							idioma fixo (sem detecção):	  --language en ou pt
 							ativar medição de chunks:	  --measure-chunks
 
-    python whisper_benchmark_complete.py --chunk-size 1.0 --model faster-whisper --reference-file textos/10sEN.txt --input-file audios/10sEN.mp4 --output results/fw-base-10s-en.json --model-size base --language en
+    python whisper_benchmark_complete.py --chunk-size 1.0 --model faster-whisper --reference-file textos/10sEN.txt --input-file audios/10sEN.mp4 --output resultados/fw-base-10s-en.json --model-size base --language en
 
 
 
 
-	python whisperx_benchmark.py --duration 10 --output results/whisperx_result.json
+	python whisperx_benchmark.py --duration 10 --output resultados/whisperx_result.json
 	python whisperx_benchmark.py --duration 10 --use-gpu
 	python whisperx_benchmark.py --duration 10 --chunk-size 1.0 --reference-text "frase esperada"
-	python whisperx_benchmark.py --duration 10 --reference-file textos/10sEN.txt --output results/whisperx_result.json
-	python whisperx_benchmark.py --model-size small --duration 10 --reference-file textos/10sEN.txt --output results/wx-small.json
-	python whisperx_benchmark.py --model-size medium --duration 10 --reference-file textos/10sEN.txt --output results/wx-medium.json
+	python whisperx_benchmark.py --duration 10 --reference-file textos/10sEN.txt --output resultados/whisperx_result.json
+	python whisperx_benchmark.py --model-size small --duration 10 --reference-file textos/10sEN.txt --output resultados/wx-small.json
+	python whisperx_benchmark.py --model-size medium --duration 10 --reference-file textos/10sEN.txt --output resultados/wx-medium.json
 										tamanhos disponíveis:		  tiny | base | small | medium | large | large-v2 | large-v3
 
 

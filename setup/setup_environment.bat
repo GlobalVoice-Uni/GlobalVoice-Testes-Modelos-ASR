@@ -22,8 +22,8 @@ if exist "%CKPT_PATH%" (
 	echo [INFO] WhisperX checkpoint not found yet. Skipping optional upgrade.
 )
 
-:: Create results directory
-mkdir results
+:: Create resultados directory
+mkdir resultados
 
 :: Print message
 echo Environment setup is complete.

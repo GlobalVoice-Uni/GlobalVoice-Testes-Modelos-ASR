@@ -17,8 +17,8 @@ else
 	echo "[INFO] WhisperX checkpoint not found yet. Skipping optional upgrade."
 fi
 
-# Create results directory
-mkdir -p results
+# Create resultados directory
+mkdir -p resultados
 
 # Print message
 echo "Environment setup is complete."

@@ -3,12 +3,13 @@ importar_resultados.py
 Importa resultados de benchmarks (JSONs) para a planilha resultados_gerais.xlsx.
 
 Uso:
-  python importar_resultados.py --folder results/faster-whisper/cpu  
-  python importar_resultados.py --folder results/         # busca recursiva
-  python importar_resultados.py --folder results/faster-whisper/cpu --dry-run    # simula sem gravar
+  python importar_resultados.py --folder resultados/faster-whisper/cpu  
+  python importar_resultados.py --folder resultados/         # busca recursiva
+  python importar_resultados.py --folder resultados/faster-whisper/cpu --dry-run    # simula sem gravar
 
-Colunas gravadas (nunca toca na fórmula RTF nem nos chunks):
+Colunas gravadas:
   F  Tempo_Processamento_s
+    G  RTF
   H  WER
   L  Pico_RAM_MB
   M  Pico_VRAM_MB
@@ -29,11 +30,11 @@ import openpyxl
 WORKBOOK_PATH = Path(__file__).parent / "resultados_gerais.xlsx"
 SHEET_NAME = "in"
 
-# Colunas (1-indexed) que serão gravadas
+# Colunas (1-indexed) que serao gravadas
 COL_TEMPO = 6   # Tempo_Processamento_s
-# COL 7 = RTF → fórmula, nunca tocar
+COL_RTF = 7     # RTF
 COL_WER = 8     # WER
-# COL 9-11 = Chunks → não importados
+# COL 9-11 = Chunks → nao importados
 COL_RAM = 12    # Pico_RAM_MB
 COL_VRAM = 13   # Pico_VRAM_MB
 
@@ -54,7 +55,7 @@ LANG_MAP = {
     "pt": "BR",
 }
 
-# Intervalos canônicos para snap (valor real → valor da planilha)
+# Intervalos canônicos para snap (valor real -> valor da planilha)
 CANONICAL_INTERVALS = [10, 30, 60]
 INTERVAL_TOLERANCE = 10  # segundos de tolerância para o snap
 
@@ -64,7 +65,7 @@ INTERVAL_TOLERANCE = 10  # segundos de tolerância para o snap
 # ---------------------------------------------------------------------------
 
 def snap_interval(audio_duration_s: float) -> int | None:
-    """Arredonda a duração real do áudio para o intervalo canônico mais próximo."""
+    """Arredonda a duraçao real do áudio para o intervalo canônico mais próximo."""
     best = min(CANONICAL_INTERVALS, key=lambda c: abs(c - audio_duration_s))
     if abs(best - audio_duration_s) <= INTERVAL_TOLERANCE:
         return best
@@ -102,7 +103,7 @@ def build_key_index(ws) -> dict:
 def json_to_key(data: dict) -> tuple | None:
     """
     Converte os campos do JSON na chave (5-tupla) usada no índice da planilha.
-    Devolve None se algum campo obrigatório estiver ausente ou não mapeável.
+    Devolve None se algum campo obrigatório estiver ausente ou nao mapeável.
     """
     model_raw  = data.get("model", "")
     device_raw = data.get("device", "")
@@ -130,6 +131,21 @@ def safe_round(value, ndigits: int = 4):
         return None
 
 
+def extract_rtf(data: dict) -> float | None:
+    """Lê RTF do JSON; se nao houver, calcula por tempo/duraçao quando possível."""
+    for key in ("real_time_factor", "rtf"):
+        rtf_val = safe_round(data.get(key), 4)
+        if rtf_val is not None:
+            return rtf_val
+
+    processing_time = safe_round(data.get("processing_time_s"), 8)
+    duration = safe_round(data.get("audio_duration_s"), 8)
+    if processing_time is None or duration in (None, 0):
+        return None
+
+    return safe_round(processing_time / duration, 4)
+
+
 def backup_workbook(workbook_path: Path) -> Path:
     """Cria backup com timestamp antes de qualquer escrita."""
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -139,7 +155,7 @@ def backup_workbook(workbook_path: Path) -> Path:
 
 
 # ---------------------------------------------------------------------------
-# Núcleo da importação
+# Núcleo da importaçao
 # ---------------------------------------------------------------------------
 
 def import_folder(folder: Path, dry_run: bool = False):
@@ -154,7 +170,7 @@ def import_folder(folder: Path, dry_run: bool = False):
 
     wb = openpyxl.load_workbook(WORKBOOK_PATH)
     if SHEET_NAME not in wb.sheetnames:
-        print(f"ERRO: Aba '{SHEET_NAME}' não encontrada na planilha.")
+        print(f"ERRO: Aba '{SHEET_NAME}' nao encontrada na planilha.")
         return
 
     ws = wb[SHEET_NAME]
@@ -174,7 +190,7 @@ def import_folder(folder: Path, dry_run: bool = False):
         key = json_to_key(data)
         if key is None:
             stats["sem_chave"] += 1
-            report.append(f"  [SEM CHAVE] {json_path.name}: campos ausentes/não mapeáveis "
+            report.append(f"  [SEM CHAVE] {json_path.name}: campos ausentes/nao mapeáveis "
                           f"(model={data.get('model')}, device={data.get('device')}, "
                           f"size={data.get('model_size')}, lang={data.get('language')}, "
                           f"dur={data.get('audio_duration_s')})")
@@ -183,28 +199,30 @@ def import_folder(folder: Path, dry_run: bool = False):
         row = key_index.get(key)
         if row is None:
             stats["nao_encontrados"] += 1
-            report.append(f"  [NÃO MAPEADO] {json_path.name}: chave não encontrada na planilha → {key}")
+            report.append(f"  [nao MAPEADO] {json_path.name}: chave nao encontrada na planilha -> {key}")
             continue
 
-        # Determinar se é inserção ou atualização
+        # Determinar se é inserçao ou atualizaçao
         already_has_data = ws.cell(row, COL_TEMPO).value is not None
         action = "atualizado" if already_has_data else "inserido"
 
         tempo = safe_round(data.get("processing_time_s"), 4)
+        rtf   = extract_rtf(data)
         wer   = safe_round(data.get("wer"), 4)
         ram   = safe_round(data.get("ram_peak_mb"), 2)
         vram  = safe_round(data.get("vram_peak_mb"), 2)
 
         if not dry_run:
             ws.cell(row, COL_TEMPO).value = tempo
+            ws.cell(row, COL_RTF).value   = rtf
             ws.cell(row, COL_WER).value   = wer
             ws.cell(row, COL_RAM).value   = ram
             ws.cell(row, COL_VRAM).value  = vram
 
         stats["atualizados" if already_has_data else "inseridos"] += 1
         report.append(
-            f"  [{action.upper()}] {json_path.name} → row {row} {key} | "
-            f"tempo={tempo}s wer={wer} ram={ram}MB vram={vram}MB"
+            f"  [{action.upper()}] {json_path.name} -> row {row} {key} | "
+            f"tempo={tempo}s rtf={rtf} wer={wer} ram={ram}MB vram={vram}MB"
         )
 
     # Gravar e salvar após processar tudo
@@ -222,12 +240,12 @@ def import_folder(folder: Path, dry_run: bool = False):
     print(f"  Inseridos:       {stats['inseridos']}")
     print(f"  Atualizados:     {stats['atualizados']}")
     print(f"  Sem chave:       {stats['sem_chave']}")
-    print(f"  Não mapeados:    {stats['nao_encontrados']}")
+    print(f"  Nao mapeados:    {stats['nao_encontrados']}")
     print(f"  Erros de leitura:{stats['erros']}")
     total = sum(stats.values())
     print(f"  Total processado:{total}")
     if dry_run:
-        print("\n[DRY-RUN] Nenhuma alteração foi gravada.")
+        print("\n[DRY-RUN] Nenhuma alteraçao foi gravada.")
 
 
 # ---------------------------------------------------------------------------
@@ -240,9 +258,9 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Exemplos:
-  python import_results.py --folder results/faster-whisper/cpu
-  python import_results.py --folder results/faster-whisper
-  python import_results.py --folder results/faster-whisper/cpu --dry-run
+    python importar_resultados.py --folder resultados/faster-whisper/cpu
+    python importar_resultados.py --folder resultados/faster-whisper
+    python importar_resultados.py --folder resultados/faster-whisper/cpu --dry-run
         """,
     )
     parser.add_argument(
@@ -254,17 +272,17 @@ Exemplos:
     parser.add_argument(
         "--dry-run",
         action="store_true",
-        help="Simula a importação sem gravar nada",
+        help="Simula a importaçao sem gravar nada",
     )
 
     args = parser.parse_args()
     folder = Path(args.folder).expanduser().resolve()
 
     if not folder.exists():
-        parser.error(f"Pasta não encontrada: {folder}")
+        parser.error(f"Pasta nao encontrada: {folder}")
 
     if not WORKBOOK_PATH.exists():
-        parser.error(f"Planilha não encontrada: {WORKBOOK_PATH}")
+        parser.error(f"Planilha nao encontrada: {WORKBOOK_PATH}")
 
     import_folder(folder, dry_run=args.dry_run)
 

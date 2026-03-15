@@ -24,7 +24,13 @@ logging.getLogger("faster_whisper").setLevel(logging.WARNING)
 class WhisperBenchmark:
     """Simple Whisper Benchmark - Compare different models with microphone or audio file input"""
     
-    def __init__(self, model_name: str, use_gpu: bool = False, model_size: str = "base"):
+    def __init__(
+        self,
+        model_name: str,
+        use_gpu: bool = False,
+        model_size: str = "base",
+        language: Optional[str] = None,
+    ):
         self.model_name = model_name
         self.model_size = model_size
         self.use_gpu = use_gpu and torch.cuda.is_available()
@@ -38,7 +44,7 @@ class WhisperBenchmark:
         self._nvidia_smi_path = shutil.which("nvidia-smi") if self.use_gpu else None
         self.show_transcription_early = False
         self.measure_chunks = False
-        self.language: Optional[str] = None
+        self.language: Optional[str] = language
         
         logger.info(f"Using device: {self.device}")
         logger.info(f"Selected model: {self.model_name} ({self.model_size})")
@@ -81,7 +87,11 @@ class WhisperBenchmark:
         elif self.model_name == 'whisperx':
             try:
                 import whisperx
-                self.model = whisperx.load_model(self.model_size, device=self.device)
+                self.model = whisperx.load_model(
+                    self.model_size,
+                    device=self.device,
+                    language=self.language,
+                )
             except Exception as e:
                 logger.error(f"Error loading whisperx: {e}")
                 raise
@@ -524,7 +534,7 @@ Examples:
   python whisper_benchmark_complete.py --model faster-whisper --duration 10
     python whisper_benchmark_complete.py --model faster-whisper --input-file audio.wav
   python whisper_benchmark_complete.py --model openai-whisper --duration 10
-  python whisper_benchmark_complete.py --model whisperx --duration 10 --output results/result_wx.json
+  python whisper_benchmark_complete.py --model whisperx --duration 10 --output resultados/result_wx.json
         """
     )
     
@@ -534,7 +544,7 @@ Examples:
     parser.add_argument('--duration', type=float, default=10.0, help='Recording duration in seconds')
     parser.add_argument('--input-file', type=str, default=None, help='Path to an audio file (if set, microphone recording is skipped)')
     parser.add_argument('--use-gpu', action='store_true', help='Use GPU if available')
-    parser.add_argument('--output', type=str, default=None, help='Output file for results (JSON format)')
+    parser.add_argument('--output', type=str, default=None, help='Output file for resultados (JSON format)')
     parser.add_argument('--chunk-size', type=float, default=1.0, help='Chunk size in seconds for latency percentiles')
     parser.add_argument('--measure-chunks', action='store_true', help='Enable chunk latency measurement (slower execution)')
     parser.add_argument('--reference-text', type=str, default=None, help='Reference text for WER calculation')
@@ -572,18 +582,22 @@ Examples:
             reference_text = file_reference
     
     try:
-        benchmark = WhisperBenchmark(model_name=args.model, use_gpu=args.use_gpu, model_size=args.model_size)
+        benchmark = WhisperBenchmark(
+            model_name=args.model,
+            use_gpu=args.use_gpu,
+            model_size=args.model_size,
+            language=args.language,
+        )
         benchmark.reference_text = reference_text
         benchmark.chunk_size_s = args.chunk_size
         benchmark.measure_chunks = args.measure_chunks
         benchmark.show_transcription_early = args.show_transcription_early
-        benchmark.language = args.language
         result = benchmark.run(duration=args.duration, input_file=args.input_file)
         
         if args.output and result:
             with open(args.output, 'w') as f:
                 json.dump(result, f, indent=2)
-            logger.info(f"✅ Results saved to {args.output}")
+            logger.info(f"✅ resultados saved to {args.output}")
     
     except Exception as e:
         logger.error(f"❌ Error during benchmark: {e}")

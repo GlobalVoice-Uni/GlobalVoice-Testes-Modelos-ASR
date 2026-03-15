@@ -9,8 +9,8 @@ __pycache__/
 *.py[cod]
 *.pyc
 
-# Results
-# results/
+# resultados
+# resultados/
 
 # IDE files
 .idea/

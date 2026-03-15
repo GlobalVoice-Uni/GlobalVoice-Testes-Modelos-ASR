@@ -35,28 +35,28 @@ $jobs = foreach ($duration in $durations) {
             ModelSize = $modelSize
             InputFile = $duration.InputFile
             ReferenceFile = $duration.ReferenceFile
-            OutputFile = Join-Path $projectRoot "results/whisperx/cpu/whisperx-$modelSize-$($duration.Label)-en-cpu.json"
+            OutputFile = Join-Path $projectRoot "resultados/whisperx/cpu/whisperx-$modelSize-$($duration.Label)-en-cpu.json"
         }
     }
 }
 
 if (-not (Test-Path $python)) {
-    throw "Python não encontrado em: $python"
+    throw "Python nao encontrado em: $python"
 }
 
 if (-not (Test-Path $scriptPath)) {
-    throw "Script não encontrado: $scriptPath"
+    throw "Script nao encontrado: $scriptPath"
 }
 
 if (-not (Test-Path (Join-Path $projectRoot 'audios'))) {
-    throw "Pasta de áudio não encontrada em: $(Join-Path $projectRoot 'audios')"
+    throw "Pasta de áudio nao encontrada em: $(Join-Path $projectRoot 'audios')"
 }
 
 if (-not (Test-Path (Join-Path $projectRoot 'textos'))) {
-    throw "Pasta de textos não encontrada em: $(Join-Path $projectRoot 'textos')"
+    throw "Pasta de textos nao encontrada em: $(Join-Path $projectRoot 'textos')"
 }
 
-$results = New-Object System.Collections.Generic.List[object]
+$resultados = New-Object System.Collections.Generic.List[object]
 
 foreach ($job in $jobs) {
     $outputDir = Split-Path -Parent $job.OutputFile
@@ -93,7 +93,7 @@ foreach ($job in $jobs) {
     }
 
     $finishedAt = Get-Date
-    $results.Add([PSCustomObject]@{
+    $resultados.Add([PSCustomObject]@{
         duration = $job.DurationLabel
         model_size = $job.ModelSize
         status = $status
@@ -109,9 +109,9 @@ foreach ($job in $jobs) {
 
 Write-Host ''
 Write-Host 'Resumo final:'
-$results | Format-Table -AutoSize
+$resultados | Format-Table -AutoSize
 
-$failed = @($results | Where-Object { $_.status -ne 'ok' })
+$failed = @($resultados | Where-Object { $_.status -ne 'ok' })
 if ($failed.Count -gt 0) {
     Write-Error "Fila concluida com $($failed.Count) falha(s)."
     exit 1

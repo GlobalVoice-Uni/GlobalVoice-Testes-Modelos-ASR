@@ -21,7 +21,6 @@ warnings.filterwarnings('ignore', category=UserWarning)
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
-logging.getLogger("faster_whisper").setLevel(logging.WARNING)
 
 
 class WhisperXBenchmark:
@@ -498,7 +497,7 @@ Examples:
   python whisperx_benchmark.py --duration 10
     python whisperx_benchmark.py --input-file audio.wav
   python whisperx_benchmark.py --duration 10 --use-gpu
-  python whisperx_benchmark.py --duration 10 --output results/whisperx_result.json
+  python whisperx_benchmark.py --duration 10 --output resultados/whisperx_result.json
         """
     )
     
@@ -506,7 +505,7 @@ Examples:
     parser.add_argument('--duration', type=float, default=10.0, help='Recording duration in seconds')
     parser.add_argument('--input-file', type=str, default=None, help='Path to an audio file (if set, microphone recording is skipped)')
     parser.add_argument('--use-gpu', action='store_true', help='Use GPU if available')
-    parser.add_argument('--output', type=str, default=None, help='Output file for results (JSON format)')
+    parser.add_argument('--output', type=str, default=None, help='Output file for resultados (JSON format)')
     parser.add_argument('--chunk-size', type=float, default=1.0, help='Chunk size in seconds for latency percentiles')
     parser.add_argument('--measure-chunks', action='store_true', help='Enable chunk latency measurement (slower execution)')
     parser.add_argument('--reference-text', type=str, default=None, help='Reference text for WER calculation')
@@ -547,7 +546,7 @@ Examples:
         if args.output and result:
             with open(args.output, 'w') as f:
                 json.dump(result, f, indent=2)
-            logger.info(f"✅ Results saved to {args.output}")
+            logger.info(f"✅ resultados saved to {args.output}")
     
     except Exception as e:
         logger.error(f"❌ Error during benchmark: {e}")

@@ -16,7 +16,7 @@ The purpose of the GlobalVoice Testes project is to provide a framework for test
 - 1. Clone o repositório
      git clone https://github.com/caiucaindo/GlobalVoice-Testes.git
      cd GlobalVoice-Testes
-- 2. Execute o setup (cria venv, instala dependências, cria pasta results)
+- 2. Execute o setup (cria venv, instala dependências, cria pasta resultados)
      windows -> ./setup/setup_environment.bat
      linux -> ./setup/setup_environment.sh
      se não tiver permissão, rode antes -> chmod +x ./setup/setup_environment.sh
