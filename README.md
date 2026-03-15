@@ -1,15 +1,28 @@
 # GlobalVoice Testes
 
-## Project Structure
+## Estrutura do Repositório
 
-- `docs/`: Contains documentation files
-- `src/`: Contains source code
-- `tests/`: Contains test files
-- `README.md`: Project overview and instructions
+- `audios/`: áudios usados nos testes.
+- `textos/`: textos de referência (ground truth) por duração.
+- `run/`: scripts PowerShell para executar benchmarks por engine/hardware.
+- `resultados/`: saídas JSON dos benchmarks e utilitários de consolidação.
+- `resultados/resultados_gerais.xlsx`: base consolidada usada para análise.
+- `resultados/dashboard_resultados.py`: dashboard Streamlit para comparação dos resultados.
+- `setup/`: scripts de preparação de ambiente (Windows e Linux).
+- `whisper_benchmark_complete.py`: benchmark principal para OpenAI Whisper e Faster-Whisper.
+- `whisperx_benchmark.py`: benchmark específico para WhisperX.
+- `requirements.txt`: dependências Python do projeto.
 
-## Purpose
+## Propósito
 
-The purpose of the GlobalVoice Testes project is to provide a framework for testing the GlobalVoice application. This project aims to facilitate the development and deployment of testing protocols to ensure the quality and reliability of the application.
+O objetivo do GlobalVoice Testes é padronizar e comparar o desempenho de diferentes stacks de ASR (OpenAI-Whisper, Faster-Whisper e WhisperX), em CPU e GPU, usando cenários reproduzíveis de duração e idioma.
+
+Com isso, o repositório permite:
+
+- medir latência e throughput (Tempo de Processamento e RTF);
+- avaliar qualidade de transcrição (WER);
+- acompanhar consumo de recursos (RAM e VRAM);
+- consolidar os resultados em planilha e dashboard para apoiar decisão de modelo em produção.
 
 # Pra testar no pC
 
@@ -32,8 +45,7 @@ The purpose of the GlobalVoice Testes project is to provide a framework for test
 
 Dashboard interativo para visualizar os resultados consolidados em `resultados/resultados_gerais.xlsx`, com foco no idioma EN e sem considerar métricas de chunk.
 
-1. Instale dependências (se ainda não instalou):
-   pip install -r requirements.txt
+1. Instale dependências (se ainda não instalou) -> pip install -r requirements.txt
 2. Rode o dashboard -> streamlit run dashboard_resultados.py
 
 Filtros disponíveis no sidebar:
