@@ -1,0 +1,18 @@
+{
+  "model": "faster-whisper",
+  "model_size": "base",
+  "device": "cuda",
+  "audio_duration_s": 55.94,
+  "processing_time_s": 1.9,
+  "real_time_factor": 0.03,
+  "chunk_size_s": 1.0,
+  "chunk_count": 0,
+  "chunk_latency_ms_p50": 0.0,
+  "chunk_latency_ms_p95": 0.0,
+  "chunk_latency_ms_p99": 0.0,
+  "ram_peak_mb": 624.15,
+  "vram_peak_mb": 172.0,
+  "wer": 0.0072,
+  "transcription": "The city is deemed to be a place full of wonders and opportunities. Many farmers and workers from the countryside even take the chance to live and work there. Bethel does not like to stay at the countryside anymore. Everything seems the same every day. Unfortunately, trips to the city are only for emergencies. One night, Bethel learns that a cousin who got sick is sent to the hospital in the city. Seeing it as a chance to get out, she pretends to be sick too. Her parents are concerned and take her to the city hospital. Passing through the city, Bethel truly enjoys the sights of tall buildings and magnificent skyscrapers. She embraces everything she gets to see. But when they arrived, her throat seems itchy and she feels dizzy. The city has given her the flu.",
+  "language": "en"
+}

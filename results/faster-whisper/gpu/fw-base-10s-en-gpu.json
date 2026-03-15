@@ -1,0 +1,18 @@
+{
+  "model": "faster-whisper",
+  "model_size": "base",
+  "device": "cuda",
+  "audio_duration_s": 10.86,
+  "processing_time_s": 0.51,
+  "real_time_factor": 0.05,
+  "chunk_size_s": 1.0,
+  "chunk_count": 0,
+  "chunk_latency_ms_p50": 0.0,
+  "chunk_latency_ms_p95": 0.0,
+  "chunk_latency_ms_p99": 0.0,
+  "ram_peak_mb": 620.25,
+  "vram_peak_mb": 172.0,
+  "wer": 0.2308,
+  "transcription": "Music is a wonderful form of expression that people are around the word enjoy. It's come in many French styles, like pop, rock, classic, and jazz.",
+  "language": "en"
+}

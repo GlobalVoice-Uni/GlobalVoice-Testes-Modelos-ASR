@@ -1,0 +1,98 @@
+$ErrorActionPreference = 'Stop'
+
+Set-Location $PSScriptRoot
+
+$python = 'd:/CODE/PROJETO - GLOBALVOICE/GlobalVoice-Testes/.venv/Scripts/python.exe'
+$scriptPath = 'whisper_benchmark_complete.py'
+
+$durations = @(
+    @{
+        Label = '10s'
+        InputFile = 'audios/10sEN.mp4'
+        ReferenceFile = 'textos/10sEN.txt'
+    }
+    @{
+        Label = '30s'
+        InputFile = 'audios/30sEN.mp4'
+        ReferenceFile = 'textos/30sEN.txt'
+    }
+    @{
+        Label = '60s'
+        InputFile = 'audios/60sEN.mp4'
+        ReferenceFile = 'textos/60sEN.txt'
+    }
+)
+
+$modelSizes = @('tiny', 'base', 'small', 'medium')
+
+$jobs = foreach ($duration in $durations) {
+    foreach ($modelSize in $modelSizes) {
+        @{
+            DurationLabel = $duration.Label
+            ModelSize = $modelSize
+            InputFile = $duration.InputFile
+            ReferenceFile = $duration.ReferenceFile
+            OutputFile = "results/faster-whisper/cpu/fw-$modelSize-$($duration.Label)-en-cpu.json"
+        }
+    }
+}
+
+if (-not (Test-Path $python)) {
+    throw "Python não encontrado em: $python"
+}
+
+if (-not (Test-Path $scriptPath)) {
+    throw "Script não encontrado: $scriptPath"
+}
+
+$results = New-Object System.Collections.Generic.List[object]
+
+foreach ($job in $jobs) {
+    Write-Host ''
+    Write-Host ('=' * 80)
+    Write-Host "Rodando faster-whisper CPU | duration=$($job.DurationLabel) | model-size=$($job.ModelSize)"
+    Write-Host "Saida: $($job.OutputFile)"
+    Write-Host ('=' * 80)
+
+    $startedAt = Get-Date
+    $status = 'ok'
+    $errorMessage = ''
+
+    try {
+        & $python $scriptPath `
+            --model faster-whisper `
+            --model-size $job.ModelSize `
+            --input-file $job.InputFile `
+            --reference-file $job.ReferenceFile `
+            --output $job.OutputFile `
+            --language en
+
+        if ($LASTEXITCODE -ne 0) {
+            throw "Processo terminou com exit code $LASTEXITCODE"
+        }
+    }
+    catch {
+        $status = 'erro'
+        $errorMessage = $_.Exception.Message
+        Write-Warning "Falha no teste $($job.DurationLabel)/$($job.ModelSize): $errorMessage"
+    }
+
+    $finishedAt = Get-Date
+    $results.Add([PSCustomObject]@{
+        duration = $job.DurationLabel
+        model_size = $job.ModelSize
+        status = $status
+        started_at = $startedAt
+        finished_at = $finishedAt
+        output_file = $job.OutputFile
+        error = $errorMessage
+    }) | Out-Null
+
+    Write-Host 'Aguardando 2 segundos antes do proximo teste...'
+    Start-Sleep -Seconds 2
+}
+
+Write-Host ''
+Write-Host 'Fila concluida sem falhas.'
+Write-Host 'Resumo final:'
+$results | Format-Table -AutoSize

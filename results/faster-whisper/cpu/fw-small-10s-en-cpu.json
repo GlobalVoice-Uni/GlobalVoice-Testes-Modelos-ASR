@@ -1,0 +1,18 @@
+{
+  "model": "faster-whisper",
+  "model_size": "small",
+  "device": "cpu",
+  "audio_duration_s": 10.86,
+  "processing_time_s": 4.28,
+  "real_time_factor": 0.39,
+  "chunk_size_s": 1.0,
+  "chunk_count": 0,
+  "chunk_latency_ms_p50": 0.0,
+  "chunk_latency_ms_p95": 0.0,
+  "chunk_latency_ms_p99": 0.0,
+  "ram_peak_mb": 972.36,
+  "vram_peak_mb": 0.0,
+  "wer": 0.0769,
+  "transcription": "Music is a wonderful form of expression that people all around the world enjoy. It's come in many different styles, like pop, rock, classical and jazz.",
+  "language": "en"
+}

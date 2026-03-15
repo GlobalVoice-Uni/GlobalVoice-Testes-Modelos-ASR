@@ -10,7 +10,7 @@ __pycache__/
 *.pyc
 
 # Results
-results/
+# results/
 
 # IDE files
 .idea/

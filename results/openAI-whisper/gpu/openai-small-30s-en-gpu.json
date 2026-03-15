@@ -1,0 +1,18 @@
+{
+  "model": "openai-whisper",
+  "model_size": "small",
+  "device": "cuda",
+  "audio_duration_s": 28.01,
+  "processing_time_s": 3.44,
+  "real_time_factor": 0.12,
+  "chunk_size_s": 1.0,
+  "chunk_count": 0,
+  "chunk_latency_ms_p50": 0.0,
+  "chunk_latency_ms_p95": 0.0,
+  "chunk_latency_ms_p99": 0.0,
+  "ram_peak_mb": 1956.32,
+  "vram_peak_mb": 12.0,
+  "wer": 0.069,
+  "transcription": "Every year on the day after Thanksgiving, most of these stores have a big sale called Black Friday. On this day, it is possible to buy products with big discount and you also have the option to buy things online. In 2016, more than 155 million people spent 3. 3 billion dollars shopping only on the internet.",
+  "language": "en"
+}

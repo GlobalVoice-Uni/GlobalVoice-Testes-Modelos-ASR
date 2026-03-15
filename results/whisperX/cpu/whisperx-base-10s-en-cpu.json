@@ -1,0 +1,18 @@
+{
+  "model": "whisperx",
+  "model_size": "base",
+  "device": "cpu",
+  "audio_duration_s": 10.86,
+  "processing_time_s": 1.87,
+  "real_time_factor": 0.17,
+  "chunk_size_s": 1.0,
+  "chunk_count": 0,
+  "chunk_latency_ms_p50": 0.0,
+  "chunk_latency_ms_p95": 0.0,
+  "chunk_latency_ms_p99": 0.0,
+  "ram_peak_mb": 1277.32,
+  "vram_peak_mb": 0.0,
+  "wer": 0.1923,
+  "transcription": "Music is a wonderful form of expression that people are around the world enjoy. It's come in many French styles like pop, rock, classic and jazz.",
+  "language": "en"
+}
