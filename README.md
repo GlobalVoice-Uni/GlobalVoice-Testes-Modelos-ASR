@@ -46,7 +46,7 @@ Com isso, o repositório permite:
 Dashboard interativo para visualizar os resultados consolidados em `resultados/resultados_gerais.xlsx`, com foco no idioma EN e sem considerar métricas de chunk.
 
 1. Instale dependências (se ainda não instalou) -> pip install -r requirements.txt
-2. Rode o dashboard -> streamlit run dashboard_resultados.py
+2. Rode o dashboard -> streamlit run resultados/dashboard_resultados.py
 
 Filtros disponíveis no sidebar:
 
