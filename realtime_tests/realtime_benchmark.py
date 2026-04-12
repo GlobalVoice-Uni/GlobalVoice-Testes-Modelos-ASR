@@ -373,7 +373,7 @@ class RealtimeTranscriberBenchmark:
         timestamp_tag = datetime.now().strftime("%Y%m%d-%H%M%S")
         stem = f"realtime-{self.model_size}-{self.device_request}-{self.language}-{self.context_window}ctx-{timestamp_tag}"
 
-        out_dir = Path("realtime_tests") / "resultados"
+        out_dir = Path(__file__).resolve().parent / "resultados"
         out_dir.mkdir(parents=True, exist_ok=True)
 
         debug_audio_path = None
