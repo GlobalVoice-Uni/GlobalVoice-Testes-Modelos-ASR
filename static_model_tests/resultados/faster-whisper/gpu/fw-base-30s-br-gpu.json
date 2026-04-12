@@ -1,0 +1,18 @@
+{
+  "model": "faster-whisper",
+  "model_size": "base",
+  "device": "cuda",
+  "audio_duration_s": 29.89,
+  "processing_time_s": 1.6,
+  "real_time_factor": 0.05,
+  "chunk_size_s": 1.0,
+  "chunk_count": 0,
+  "chunk_latency_ms_p50": 0.0,
+  "chunk_latency_ms_p95": 0.0,
+  "chunk_latency_ms_p99": 0.0,
+  "ram_peak_mb": 623.06,
+  "vram_peak_mb": 173.0,
+  "wer": 0.1087,
+  "transcription": "Certa vez, uma menina ganhou um brinquedo no dia do seu aniversário. Na manhã seguinte, uma menina foi até sua casa para fazer ele companhia e brincar. Mas a menina não podia ficar com a amiga, pois tinha que sair com a mãe. A amiga pediu que a menina deixasse ficar brincando com seu brinquedo novo até que ela votasse. Ela não gostou muito da ideia, mas por insistencia da mãe acabou concordando. Quando retornou para casa, a amiga já não estava lá e que ia deixar do brinquedo fora da caixa.",
+  "language": "pt"
+}

@@ -1,0 +1,18 @@
+{
+  "model": "openai-whisper",
+  "model_size": "tiny",
+  "device": "cuda",
+  "audio_duration_s": 60.61,
+  "processing_time_s": 4.26,
+  "real_time_factor": 0.07,
+  "chunk_size_s": 1.0,
+  "chunk_count": 0,
+  "chunk_latency_ms_p50": 0.0,
+  "chunk_latency_ms_p95": 0.0,
+  "chunk_latency_ms_p99": 0.0,
+  "ram_peak_mb": 1137.99,
+  "vram_peak_mb": 94.0,
+  "wer": 0.209,
+  "transcription": "Em um cidade do interior, havia um homem que não se enritava e não discutia com ninguém. Sempre encontrava-se aí da corri de ál. Não feria a ninguém, nem se aborrecer com as pessoas. Morava em uma modessa pensão onde era admirado e querido. Para testado, um dia seus companheiros combinaram de levado a irritação e a discussão não determinada noite em que o levareu a um gantar. E na hora, um todo dos detalhes com a garçonete que seria responsável por atender a mesa reservada para o casião. Assim que iniciou o gantar, como a entrada, foi servido uma saborosa sopa. Dá que o homem costava muito. A garçonete chegou próximo a ele pela esquerda. E ele, prontamente, levou seu prato para aquele lado. A fim de facilitar a tarefa de servir. Mas ela serviu todos os demais e quando chegou a vez dele, foi para outra mesa. Ele esperou calmamente e enselencio que ela voltasse. Quando ela se aproximou outra vez, agora pela direita, para recolhe o prato, ele levou outra vez seu prato na direção da jovem.",
+  "language": "pt"
+}

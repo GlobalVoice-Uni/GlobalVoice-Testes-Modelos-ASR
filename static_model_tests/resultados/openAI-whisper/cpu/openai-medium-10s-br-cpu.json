@@ -1,0 +1,18 @@
+{
+  "model": "openai-whisper",
+  "model_size": "medium",
+  "device": "cpu",
+  "audio_duration_s": 9.83,
+  "processing_time_s": 10.84,
+  "real_time_factor": 1.1,
+  "chunk_size_s": 1.0,
+  "chunk_count": 0,
+  "chunk_latency_ms_p50": 0.0,
+  "chunk_latency_ms_p95": 0.0,
+  "chunk_latency_ms_p99": 0.0,
+  "ram_peak_mb": 4941.31,
+  "vram_peak_mb": 0.0,
+  "wer": 0.0,
+  "transcription": "O mestre, calmamente, seguiu tomando o seu chá e quando terminou de beber, encheu sua xícara novamente. Depois, começou a encher a xícara do visitante.",
+  "language": "pt"
+}

@@ -1,0 +1,18 @@
+{
+  "model": "whisperx",
+  "model_size": "base",
+  "device": "cuda",
+  "audio_duration_s": 60.61,
+  "processing_time_s": 2.6,
+  "real_time_factor": 0.04,
+  "chunk_size_s": 1.0,
+  "chunk_count": 0,
+  "chunk_latency_ms_p50": 0.0,
+  "chunk_latency_ms_p95": 0.0,
+  "chunk_latency_ms_p99": 0.0,
+  "ram_peak_mb": 1197.29,
+  "vram_peak_mb": 562.0,
+  "wer": 0.0847,
+  "transcription": "Em uma cidade interior, havia um homem que não se irritava e não discutia com ninguém. Sempre encontrava a saída cordial, não feria a ninguém, nem se aborrecia com as pessoas. Moravam em uma modessa pensão onde era admirado e querido. Para testá-lo, um dia seus companheiros combinaram de levá-lo a irritação e a discussão no determinado noite em que o levariam a um jantar. Combinaram todos os detalhes com a garsonete que seria responsável por atender a mesa reservada para o casal. Assim que iniciou o jantar, como a entrada foi servido uma saborosa sopa, da qual o homem gostava muito, a garçonete chegou próximo a ele pela esquerda, e ele, prontamente, levou seu prato para aquele lado, a fim de facilitar a tarefa de servir, mas ela serviu todos os demais e quando chegou a vez dele, foi para outra mesa. Ele esperou calumamente e em silêncio que ela voltasse. Quando ela se aproximou outra vez, agora pela direita, para recolher o prato, ele levou outra vez seu prato na direção da jovem.",
+  "language": "pt"
+}

@@ -1,0 +1,18 @@
+{
+  "model": "whisperx",
+  "model_size": "tiny",
+  "device": "cpu",
+  "audio_duration_s": 9.83,
+  "processing_time_s": 1.9,
+  "real_time_factor": 0.19,
+  "chunk_size_s": 1.0,
+  "chunk_count": 0,
+  "chunk_latency_ms_p50": 0.0,
+  "chunk_latency_ms_p95": 0.0,
+  "chunk_latency_ms_p99": 0.0,
+  "ram_peak_mb": 1091.31,
+  "vram_peak_mb": 0.0,
+  "wer": 0.2,
+  "transcription": "O mestre, finalmente, seguiu tomando seu chá e, quando terminou de beber, encheu sua chica novamente. Depois, começou a enchear a chica do visitante.",
+  "language": "pt"
+}

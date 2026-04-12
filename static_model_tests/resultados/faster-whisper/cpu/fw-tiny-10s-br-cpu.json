@@ -1,0 +1,18 @@
+{
+  "model": "faster-whisper",
+  "model_size": "tiny",
+  "device": "cpu",
+  "audio_duration_s": 9.83,
+  "processing_time_s": 0.78,
+  "real_time_factor": 0.08,
+  "chunk_size_s": 1.0,
+  "chunk_count": 0,
+  "chunk_latency_ms_p50": 0.0,
+  "chunk_latency_ms_p95": 0.0,
+  "chunk_latency_ms_p99": 0.0,
+  "ram_peak_mb": 650.37,
+  "vram_peak_mb": 0.0,
+  "wer": 0.28,
+  "transcription": "O mestre, finalmente, seguiu tomando seu chá e quando terminou de beber, encher o seu chícara novamente. Depois, começou a encher a chícara do visitante.",
+  "language": "pt"
+}

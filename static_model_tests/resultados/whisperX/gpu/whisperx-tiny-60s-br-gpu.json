@@ -1,0 +1,18 @@
+{
+  "model": "whisperx",
+  "model_size": "tiny",
+  "device": "cuda",
+  "audio_duration_s": 60.61,
+  "processing_time_s": 1.87,
+  "real_time_factor": 0.03,
+  "chunk_size_s": 1.0,
+  "chunk_count": 0,
+  "chunk_latency_ms_p50": 0.0,
+  "chunk_latency_ms_p95": 0.0,
+  "chunk_latency_ms_p99": 0.0,
+  "ram_peak_mb": 1196.53,
+  "vram_peak_mb": 530.0,
+  "wer": 0.1638,
+  "transcription": "Em uma cidade do interior, havia um homem que não se enritava e não discutia com ninguém. Sempre encontrava-se aí da cordial, não feria a ninguém, nem se aborrecer com as pessoas. Morava em uma modessa pensão onde era admirado e querido. Para testado, um dia seus companheiros combinaram de levá-lo a irritação e a discusão, não determinado noite em que o levá-lo agujantar. Combinaram todos os detalhes com a gastonete que seria responsável por atender a mesa reservada para o casião. Assim que iniciou o Jantá, como a entrada foi servindo a saborosa sopa. Da qual o homem costava muito? A Gassonette chegou próximo a ele pela esquerda, e ele, prontamente, levou seu prato para aquele lado. A fim de facilitar a tarefa de servir. Mas ela serviu todos os demais, e quando chegou a vez dele, foi para outra mesa. Ele esperou calmamente e insilência que ela voltasse. Quando ela se aproximou outra vez, agora pela direita, para recolher o prato, ele levou outra vez seu prato na direção da jovem.",
+  "language": "pt"
+}
