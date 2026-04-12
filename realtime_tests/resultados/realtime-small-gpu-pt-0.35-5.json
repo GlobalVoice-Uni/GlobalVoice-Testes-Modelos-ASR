@@ -1,0 +1,47 @@
+{
+  "model": "faster-whisper",
+  "model_size": "small",
+  "device": "gpu",
+  "language": "pt",
+  "context_window": 5,
+  "step_duration_s": 0.2,
+  "boundary_overlap_s": 0.35,
+  "tail_guard_words": 5,
+  "timestamp": "2026-04-11T21:00:58.864944",
+  "total_time_s": 14.362580299377441,
+  "audio_duration_s": 13.999999999999998,
+  "real_time_factor": 1.0258985928126745,
+  "chunks_processed": 71,
+  "latency_ms": {
+    "min": 10.967731475830078,
+    "max": 99.30944442749023,
+    "mean": 40.578762690226235,
+    "p50": 11.459112167358398,
+    "p95": 11.459112167358398,
+    "p99": 11.459112167358398
+  },
+  "first_part_latency_ms": 4860.33,
+  "parts_timing": [
+    {
+      "part_index": 1,
+      "utterance_audio_s": 3.2,
+      "transcribe_ms": 99.31,
+      "emitted_since_start_ms": 4860.33
+    },
+    {
+      "part_index": 2,
+      "utterance_audio_s": 3.35,
+      "transcribe_ms": 10.97,
+      "emitted_since_start_ms": 7715.59
+    },
+    {
+      "part_index": 3,
+      "utterance_audio_s": 3.35,
+      "transcribe_ms": 11.46,
+      "emitted_since_start_ms": 10653.87
+    }
+  ],
+  "transcription": "Tanto no Brasil, como no resto do mundo, torna-se cada vez... mais frequente ver mulheres em cargos importantes em gravação. em grandes companhias, antes ocupadas apenas por homens.",
+  "ram_peak_mb": 677.35546875,
+  "debug_audio_path": "realtime_tests\\resultados\\realtime_debug_audio\\realtime-small-gpu-pt-5ctx-20260411-210058.wav"
+}

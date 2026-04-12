@@ -1,0 +1,26 @@
+{
+  "model": "faster-whisper",
+  "model_size": "base",
+  "device": "gpu",
+  "language": "pt",
+  "context_window": 5,
+  "step_duration_s": 0.2,
+  "boundary_overlap_s": 0.45,
+  "tail_guard_words": 4,
+  "timestamp": "2026-04-11T22:56:31.739005",
+  "total_time_s": 10.35318899154663,
+  "audio_duration_s": 9.999999999999998,
+  "real_time_factor": 1.0353188991546634,
+  "chunks_processed": 51,
+  "latency_ms": {
+    "min": 5.997419357299805,
+    "max": 502.5830268859863,
+    "mean": 254.29022312164307,
+    "p50": 5.997419357299805,
+    "p95": 5.997419357299805,
+    "p99": 5.997419357299805
+  },
+  "transcription": "Quando eu falar aqui, eu me confinto a longe. Alô, tá me ouvindo?",
+  "ram_peak_mb": 673.92578125,
+  "debug_audio_path": "realtime_tests\\resultados\\realtime_debug_audio\\realtime-base-gpu-pt-5ctx-20260411-225631.wav"
+}

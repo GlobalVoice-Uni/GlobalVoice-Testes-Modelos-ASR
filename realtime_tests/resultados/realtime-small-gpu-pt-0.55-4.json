@@ -1,0 +1,47 @@
+{
+  "model": "faster-whisper",
+  "model_size": "small",
+  "device": "gpu",
+  "language": "pt",
+  "context_window": 5,
+  "step_duration_s": 0.2,
+  "boundary_overlap_s": 0.55,
+  "tail_guard_words": 4,
+  "timestamp": "2026-04-11T21:05:42.624429",
+  "total_time_s": 14.36479902267456,
+  "audio_duration_s": 13.999999999999998,
+  "real_time_factor": 1.026057073048183,
+  "chunks_processed": 71,
+  "latency_ms": {
+    "min": 10.970830917358398,
+    "max": 81.87103271484375,
+    "mean": 34.94620323181152,
+    "p50": 11.996746063232422,
+    "p95": 11.996746063232422,
+    "p99": 11.996746063232422
+  },
+  "first_part_latency_ms": 5160.98,
+  "parts_timing": [
+    {
+      "part_index": 1,
+      "utterance_audio_s": 3.2,
+      "transcribe_ms": 81.87,
+      "emitted_since_start_ms": 5160.98
+    },
+    {
+      "part_index": 2,
+      "utterance_audio_s": 3.35,
+      "transcribe_ms": 12.0,
+      "emitted_since_start_ms": 7705.13
+    },
+    {
+      "part_index": 3,
+      "utterance_audio_s": 3.35,
+      "transcribe_ms": 10.97,
+      "emitted_since_start_ms": 10451.12
+    }
+  ],
+  "transcription": "tanto no Brasil, como no resto do mundo, torna-se cada vez mais... da vez mais frequente para mulheres em cargos importantes em grandes companhias. de companhias, antes ocupados apenas por homens.",
+  "ram_peak_mb": 682.66015625,
+  "debug_audio_path": "realtime_tests\\resultados\\realtime_debug_audio\\realtime-small-gpu-pt-5ctx-20260411-210542.wav"
+}

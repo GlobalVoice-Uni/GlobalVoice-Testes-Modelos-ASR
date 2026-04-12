@@ -1,0 +1,53 @@
+{
+  "model": "faster-whisper",
+  "model_size": "small",
+  "device": "gpu",
+  "language": "pt",
+  "context_window": 3,
+  "step_duration_s": 0.2,
+  "boundary_overlap_s": 0.45,
+  "tail_guard_words": 4,
+  "timestamp": "2026-04-11T21:23:23.606492",
+  "total_time_s": 14.367729425430298,
+  "audio_duration_s": 13.999999999999998,
+  "real_time_factor": 1.0262663875307356,
+  "chunks_processed": 71,
+  "latency_ms": {
+    "min": 6.176233291625977,
+    "max": 80.68037033081055,
+    "mean": 27.014732360839844,
+    "p50": 10.149002075195312,
+    "p95": 11.053323745727539,
+    "p99": 11.053323745727539
+  },
+  "first_part_latency_ms": 4605.08,
+  "parts_timing": [
+    {
+      "part_index": 1,
+      "utterance_audio_s": 3.2,
+      "transcribe_ms": 80.68,
+      "emitted_since_start_ms": 4605.08
+    },
+    {
+      "part_index": 2,
+      "utterance_audio_s": 3.25,
+      "transcribe_ms": 10.15,
+      "emitted_since_start_ms": 7286.79
+    },
+    {
+      "part_index": 3,
+      "utterance_audio_s": 3.25,
+      "transcribe_ms": 11.05,
+      "emitted_since_start_ms": 10060.6
+    },
+    {
+      "part_index": 4,
+      "utterance_audio_s": 1.45,
+      "transcribe_ms": 6.18,
+      "emitted_since_start_ms": 11332.4
+    }
+  ],
+  "transcription": "Tanto no Brasil, como no resto do mundo. torna-se cada vez mais frequente ver mulheres em cargos importantes. em grandes companhias, antes ocupados apenas por em Lisboa, Lisboa, Lisboa, Lisboa, Lisboa, Lisboa, Lisboa, Lisboa",
+  "ram_peak_mb": 680.07421875,
+  "debug_audio_path": "realtime_tests\\resultados\\realtime_debug_audio\\realtime-small-gpu-pt-3ctx-20260411-212323.wav"
+}

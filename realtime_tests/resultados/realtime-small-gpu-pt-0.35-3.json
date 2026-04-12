@@ -1,0 +1,53 @@
+{
+  "model": "faster-whisper",
+  "model_size": "small",
+  "device": "gpu",
+  "language": "pt",
+  "context_window": 5,
+  "step_duration_s": 0.2,
+  "boundary_overlap_s": 0.35,
+  "tail_guard_words": 3,
+  "timestamp": "2026-04-11T20:57:46.148666",
+  "total_time_s": 14.369856834411621,
+  "audio_duration_s": 13.999999999999998,
+  "real_time_factor": 1.0264183453151159,
+  "chunks_processed": 71,
+  "latency_ms": {
+    "min": 4.438638687133789,
+    "max": 107.47623443603516,
+    "mean": 33.47855806350708,
+    "p50": 9.999990463256836,
+    "p95": 11.999368667602539,
+    "p99": 11.999368667602539
+  },
+  "first_part_latency_ms": 4446.38,
+  "parts_timing": [
+    {
+      "part_index": 1,
+      "utterance_audio_s": 3.2,
+      "transcribe_ms": 107.48,
+      "emitted_since_start_ms": 4446.38
+    },
+    {
+      "part_index": 2,
+      "utterance_audio_s": 3.35,
+      "transcribe_ms": 10.0,
+      "emitted_since_start_ms": 7357.5
+    },
+    {
+      "part_index": 3,
+      "utterance_audio_s": 3.35,
+      "transcribe_ms": 12.0,
+      "emitted_since_start_ms": 10239.42
+    },
+    {
+      "part_index": 4,
+      "utterance_audio_s": 1.15,
+      "transcribe_ms": 4.44,
+      "emitted_since_start_ms": 10895.25
+    }
+  ],
+  "transcription": "Tanto no Brasil, como no resto do mundo, torna-se ca... país, cada vez mais frequente ver mulheres em cargos importantes sem grandes companhias, antes ocupados apenas por homens.",
+  "ram_peak_mb": 674.1640625,
+  "debug_audio_path": "realtime_tests\\resultados\\realtime_debug_audio\\realtime-small-gpu-pt-5ctx-20260411-205746.wav"
+}

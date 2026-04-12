@@ -1,0 +1,53 @@
+{
+  "model": "faster-whisper",
+  "model_size": "small",
+  "device": "gpu",
+  "language": "pt",
+  "context_window": 5,
+  "step_duration_s": 0.2,
+  "boundary_overlap_s": 0.45,
+  "tail_guard_words": 3,
+  "timestamp": "2026-04-11T21:01:48.501844",
+  "total_time_s": 14.363826751708984,
+  "audio_duration_s": 13.999999999999998,
+  "real_time_factor": 1.0259876251220705,
+  "chunks_processed": 71,
+  "latency_ms": {
+    "min": 5.971431732177734,
+    "max": 85.53624153137207,
+    "mean": 28.12647819519043,
+    "p50": 9.999752044677734,
+    "p95": 10.99848747253418,
+    "p99": 10.99848747253418
+  },
+  "first_part_latency_ms": 4521.24,
+  "parts_timing": [
+    {
+      "part_index": 1,
+      "utterance_audio_s": 3.2,
+      "transcribe_ms": 85.54,
+      "emitted_since_start_ms": 4521.24
+    },
+    {
+      "part_index": 2,
+      "utterance_audio_s": 3.25,
+      "transcribe_ms": 10.0,
+      "emitted_since_start_ms": 7120.65
+    },
+    {
+      "part_index": 3,
+      "utterance_audio_s": 3.25,
+      "transcribe_ms": 11.0,
+      "emitted_since_start_ms": 9883.87
+    },
+    {
+      "part_index": 4,
+      "utterance_audio_s": 1.25,
+      "transcribe_ms": 5.97,
+      "emitted_since_start_ms": 10520.21
+    }
+  ],
+  "transcription": "Tanto no Brasil, como no resto do mundo, torna-se cada... país, cada vez mais frequente, ver mulheres em cargos importantes em greve... antes em grandes companhias, antes ocupados apenas por homens.",
+  "ram_peak_mb": 694.734375,
+  "debug_audio_path": "realtime_tests\\resultados\\realtime_debug_audio\\realtime-small-gpu-pt-5ctx-20260411-210148.wav"
+}

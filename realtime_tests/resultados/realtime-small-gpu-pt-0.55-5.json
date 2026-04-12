@@ -1,0 +1,53 @@
+{
+  "model": "faster-whisper",
+  "model_size": "small",
+  "device": "gpu",
+  "language": "pt",
+  "context_window": 5,
+  "step_duration_s": 0.2,
+  "boundary_overlap_s": 0.55,
+  "tail_guard_words": 5,
+  "timestamp": "2026-04-11T21:06:19.996083",
+  "total_time_s": 14.363486766815186,
+  "audio_duration_s": 13.999999999999998,
+  "real_time_factor": 1.0259633404867992,
+  "chunks_processed": 71,
+  "latency_ms": {
+    "min": 6.355762481689453,
+    "max": 85.84737777709961,
+    "mean": 28.515100479125977,
+    "p50": 10.884284973144531,
+    "p95": 10.972976684570312,
+    "p99": 10.972976684570312
+  },
+  "first_part_latency_ms": 4558.91,
+  "parts_timing": [
+    {
+      "part_index": 1,
+      "utterance_audio_s": 3.2,
+      "transcribe_ms": 85.85,
+      "emitted_since_start_ms": 4558.91
+    },
+    {
+      "part_index": 2,
+      "utterance_audio_s": 3.35,
+      "transcribe_ms": 10.88,
+      "emitted_since_start_ms": 6876.42
+    },
+    {
+      "part_index": 3,
+      "utterance_audio_s": 3.35,
+      "transcribe_ms": 10.97,
+      "emitted_since_start_ms": 9862.59
+    },
+    {
+      "part_index": 4,
+      "utterance_audio_s": 1.15,
+      "transcribe_ms": 6.36,
+      "emitted_since_start_ms": 10516.02
+    }
+  ],
+  "transcription": "Tanto no Brasil, como no resto do mundo, torne-se cada... Brasil. em grandes companhias, antes ocupados apenas por homens. em grandes companhias.",
+  "ram_peak_mb": 686.046875,
+  "debug_audio_path": "realtime_tests\\resultados\\realtime_debug_audio\\realtime-small-gpu-pt-5ctx-20260411-210619.wav"
+}

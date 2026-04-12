@@ -1,0 +1,53 @@
+{
+  "model": "faster-whisper",
+  "model_size": "small",
+  "device": "gpu",
+  "language": "pt",
+  "context_window": 3,
+  "step_duration_s": 0.2,
+  "boundary_overlap_s": 0.45,
+  "tail_guard_words": 4,
+  "timestamp": "2026-04-11T21:24:12.932725",
+  "total_time_s": 14.379154443740845,
+  "audio_duration_s": 13.999999999999998,
+  "real_time_factor": 1.0270824602672033,
+  "chunks_processed": 71,
+  "latency_ms": {
+    "min": 5.002737045288086,
+    "max": 87.14556694030762,
+    "mean": 28.264999389648438,
+    "p50": 10.026931762695312,
+    "p95": 10.884761810302734,
+    "p99": 10.884761810302734
+  },
+  "first_part_latency_ms": 4388.13,
+  "parts_timing": [
+    {
+      "part_index": 1,
+      "utterance_audio_s": 3.2,
+      "transcribe_ms": 87.15,
+      "emitted_since_start_ms": 4388.13
+    },
+    {
+      "part_index": 2,
+      "utterance_audio_s": 3.25,
+      "transcribe_ms": 10.03,
+      "emitted_since_start_ms": 7151.65
+    },
+    {
+      "part_index": 3,
+      "utterance_audio_s": 3.25,
+      "transcribe_ms": 10.88,
+      "emitted_since_start_ms": 9870.82
+    },
+    {
+      "part_index": 4,
+      "utterance_audio_s": 1.45,
+      "transcribe_ms": 5.0,
+      "emitted_since_start_ms": 10772.74
+    }
+  ],
+  "transcription": "Tanto no Brasil, como no resto do mundo, torna... mundo torna-se cada vez mais frequente de ver mulheres em cargos importantes. os importantes em grandes companhias, antes ocupados apenas para... o penas por homens.",
+  "ram_peak_mb": 685.09375,
+  "debug_audio_path": "realtime_tests\\resultados\\realtime_debug_audio\\realtime-small-gpu-pt-3ctx-20260411-212412.wav"
+}

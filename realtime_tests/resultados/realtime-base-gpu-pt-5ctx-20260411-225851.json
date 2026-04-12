@@ -1,0 +1,26 @@
+{
+  "model": "faster-whisper",
+  "model_size": "base",
+  "device": "gpu",
+  "language": "pt",
+  "context_window": 5,
+  "step_duration_s": 0.2,
+  "boundary_overlap_s": 0.45,
+  "tail_guard_words": 4,
+  "timestamp": "2026-04-11T22:58:51.376408",
+  "total_time_s": 10.342710494995117,
+  "audio_duration_s": 9.999999999999998,
+  "real_time_factor": 1.034271049499512,
+  "chunks_processed": 51,
+  "latency_ms": {
+    "min": 8.999347686767578,
+    "max": 117.13647842407227,
+    "mean": 45.38567860921224,
+    "p50": 10.021209716796875,
+    "p95": 10.021209716796875,
+    "p99": 10.021209716796875
+  },
+  "transcription": "Então, quando eu falar aqui, depois de algum segundo... em alguns segundos vai aparecer ali ó. Perfeitamente... Não, mais vai aparecer, tá vendo?",
+  "ram_peak_mb": 674.171875,
+  "debug_audio_path": "realtime_tests\\resultados\\realtime_debug_audio\\realtime-base-gpu-pt-5ctx-20260411-225851.wav"
+}

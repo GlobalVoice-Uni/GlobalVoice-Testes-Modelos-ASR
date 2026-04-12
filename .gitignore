@@ -11,10 +11,12 @@ __pycache__/
 
 # resultados
 # resultados/
-realtime_tests/
+realtime_tests/resultados/realtime_debug_audio/
 
 # IDE files
 .idea/
 *.sublime-workspace
 *.sublime-project
 .env
+
+nomeando_commits.md
