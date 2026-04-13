@@ -136,7 +136,7 @@ O dashboard em Streamlit (`static_model_tests/resultados/dashboard_resultados.py
 - recomendacao orientada a streaming (score ponderado);
 - metricas de exposicao atualizadas dinamicamente conforme idioma selecionado.
 
-Nesse ponto foi possivel fechar a fase pre-realtime com uma escolha tecnica inicial para avancar, com validacao em EN e confirmacao preliminar em BR.
+Nesse ponto foi possivel fechar a fase pre-realtime com uma escolha tecnica unica, baseada no conjunto completo EN+BR ja consolidado.
 
 ---
 
@@ -155,6 +155,7 @@ Regras adotadas:
 - comparacao principal baseada em EN, com validacao cruzada em BR;
 - mesmas entradas de audio para todos os modelos em cada idioma;
 - mesma malha de combinacoes (modelo/tamanho/hardware/intervalo) para EN e BR;
+- convergencia de ranking entre EN e BR no resultado final;
 - chunks excluidos da decisao final (metricas nao utilizadas).
 
 ---
@@ -169,7 +170,7 @@ Regras adotadas:
 | Cobertura final                 | 100% | 100% |  100% |
 | JSONs estaticos encontrados     | 72   | 72   |   144 |
 
-**Nota:** BR inclui dados de validacao inicial para confirmar comportamento de modelos em portugues brasileiro.
+**Nota:** EN e BR possuem cobertura completa (72+72) e sustentam a mesma conclusao de selecao de modelo.
 
 ---
 
@@ -288,11 +289,11 @@ Nas discussoes pre-realtime, ficou claro que:
 
 ## 9. Limitacoes da Fase Estatica
 
-- corpus focado em EN para comparacao principal, com validacao preliminar em BR;
+- corpus limitado aos audios de referencia definidos para EN e BR;
 - apenas 3 duracoes de audio (10/30/60) por idioma;
 - chunks descartados como metrica de decisao final (nao representam streaming real);
 - benchmark estatico nao mede latencia de rede nem concorrencia multiusuario;
-- dados de BR ainda em fase de validacao inicial (comportamentos com linguagem portuguesa podem variar em corpus maior).
+- apesar da convergencia EN/BR nesta bateria, resultados podem variar com corpus maior e cenarios acusticos diferentes.
 
 ---
 
@@ -303,9 +304,9 @@ A fase estatica atingiu o objetivo com cobertura completa e metodologia reproduz
 Principais conclusoes:
 
 1. O processo evoluiu corretamente de microfone manual para entradas padronizadas, removendo vies de comparacao.
-2. A automacao em lote viabilizou escala experimental: **72 combinacoes EN + 72 em BR = 144 testes** executados com consistencia.
+2. A automacao em lote viabilizou escala experimental: **72 combinacoes EN + 72 em BR = 144 testes** executados com consistencia antes da decisao tecnica.
 3. A decisao de ignorar chunks foi tecnicamente correta para esse escopo, dado baixo sinal e alto custo operacional.
-4. Faster-Whisper se destacou no equilibrio geral e foi uma escolha consistente para iniciar a fase realtime.
-5. Dashboard atualizado com suporte dinamico a multiplos idiomas, permitindo comparacao cruzada EN vs BR.
+4. Faster-Whisper se destacou no equilibrio geral e foi a escolha consistente em EN e BR para iniciar a fase realtime.
+5. Dashboard atualizado com suporte dinamico a multiplos idiomas, permitindo comparacao cruzada EN vs BR sem separar decisao por idioma.
 
-Em resumo: a linha pre-realtime fechou com criterio tecnico suficiente para transicao de benchmark estatico para validacao de comportamento continuo de produto, com validacao inicial em portugues brasileiro confirmando viabilidade da abordagem.
+Em resumo: a linha pre-realtime fechou com criterio tecnico suficiente para transicao de benchmark estatico para validacao de comportamento continuo de produto, com base consolidada EN+BR e conclusao unica de selecao de modelo.
