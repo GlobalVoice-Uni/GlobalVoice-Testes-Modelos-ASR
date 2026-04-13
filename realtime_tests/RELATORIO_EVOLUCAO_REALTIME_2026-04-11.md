@@ -48,6 +48,14 @@ Problema observado:
 
 - repeticoes e sobrescritas crescentes.
 - ruido visual no terminal.
+- aumento de custo computacional local durante a exibicao parcial continua.
+- perda de conteudo em trechos especificos, com reducao anomala da duracao efetiva do audio processado.
+
+Diagnostico importante desta fase:
+
+- foi adicionado salvamento de WAV de debug por execucao;
+- a auditoria desses WAVs evidenciou discrepancias de duracao (por exemplo, janelas esperadas de 10s chegando com ~6s em alguns casos);
+- a analise apontou que o problema estava no fluxo do script (segmentacao/janelamento e controle de silencio), e nao na captura do microfone.
 
 Conclusao:
 
@@ -58,11 +66,12 @@ Conclusao:
 Mudanca principal:
 
 - abandono da janela deslizante com parcial agressivo;
-- troca para commit por enunciado com VAD simples.
+- troca para commit por enunciado com VAD (Voice Activity Detection) simples.
 
 Efeito:
 
 - reduziu bastante as repeticoes e deixou o texto mais util para uso real.
+- reduziu tambem o custo operacional do processamento em tempo real, ao remover a politica de janela parcial continua que elevava a carga local.
 
 ## Fase D - Tratamento de fronteira
 
